@@ -12,14 +12,19 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { EyeIcon, EyeOffIcon, Loader2Icon } from 'lucide-react'
 import { useState } from 'react'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 function RegisterPage() {
   const [showPass, setShowPass] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [iscarregado, setIscarregado] = useState<boolean>(false)
-
 
   const handleSubmit = async (event: React.SubmitEvent) => {
     setIscarregado(true)
@@ -64,42 +69,34 @@ function RegisterPage() {
 
         <CardContent>
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div className='flex items-center gap-4'>
+            <div className="flex items-center gap-4">
               <div className="flex flex-col gap-2">
-              <Label htmlFor="nome" className="text-foreground">
-                Nome
-              </Label>
-              <Input
-                id="nome"
-                name="nome"
-                type="text"
-                placeholder="seu.nome@ifce.edu.br"
-                value={email}
-                onChange={(e) => {
+                <Label htmlFor="nome" className="text-foreground">
+                  Nome
+                </Label>
+                <Input
+                  id="nome"
+                  name="nome"
+                  type="text"
+                  placeholder="Seu nome"
+                  required
+                  className="h-11 bg-background"
+                />
+              </div>
 
-                }}
-                required
-                className="h-11 bg-background"
-              />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="sobrenome" className="text-foreground">
-                Sobrenome
-              </Label>
-              <Input
-                id="sobrenome"
-                name="sobrenome"
-                type="text"
-                placeholder="seu.nome@ifce.edu.br"
-                value={email}
-                onChange={(e) => {
-
-                }}
-                required
-                className="h-11 bg-background"
-              />
-            </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="sobrenome" className="text-foreground">
+                  Sobrenome
+                </Label>
+                <Input
+                  id="sobrenome"
+                  name="sobrenome"
+                  type="text"
+                  placeholder="Seu sobrenome"
+                  required
+                  className="h-11 bg-background"
+                />
+              </div>
             </div>
 
             <div className="flex flex-col gap-2">
@@ -112,49 +109,55 @@ function RegisterPage() {
                 type="email"
                 placeholder="seu.nome@ifce.edu.br"
                 value={email}
+                onChange={(e) => {
+                    setEmail(e.currentTarget.value)
+                  }}
                 required
                 className="h-11 bg-background"
               />
             </div>
 
             <div className="flex flex-col gap-2">
-                <Label htmlFor="role" className="text-foreground">
-                  Vinculo
-                </Label>
-                <Select required >
-                  <SelectTrigger className='bg-background w-full h-11' id='role'>
-                      <SelectValue placeholder="Selecione seu vinculo com o IFCE"/>
-                  </SelectTrigger>
+              <Label htmlFor="role" className="text-foreground">
+                Vinculo
+              </Label>
+              <Select required>
+                <SelectTrigger className="bg-background w-full h-11" id="role">
+                  <SelectValue placeholder="Selecione seu vinculo com o IFCE" />
+                </SelectTrigger>
 
-                  <SelectContent>
-                    <SelectItem value='student'>Estudante</SelectItem>
-                    <SelectItem value='professor'>Docente</SelectItem>
-                    <SelectItem value='technician'>Tecnico</SelectItem>
-                  </SelectContent>
-                </Select>
+                <SelectContent>
+                  <SelectItem value="student">Estudante</SelectItem>
+                  <SelectItem value="professor">Docente</SelectItem>
+                  <SelectItem value="technician">Tecnico</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="flex flex-col gap-2">
-                <Label htmlFor="role" className="text-foreground">
-                  Campus
-                </Label>
-                <Select required>
-                  <SelectTrigger className='bg-background w-full h-11' id='campus'>
-                      <SelectValue placeholder="Selecione seu vinculo com o IFCE"/>
-                  </SelectTrigger>
+              <Label htmlFor="role" className="text-foreground">
+                Campus
+              </Label>
+              <Select required>
+                <SelectTrigger
+                  className="bg-background w-full h-11"
+                  id="campus"
+                >
+                  <SelectValue placeholder="Selecione seu vinculo com o IFCE" />
+                </SelectTrigger>
 
-                  <SelectContent>
-                    <SelectItem value='taua'>Tauá</SelectItem>
-                    <SelectItem value='boa_viagem'>Boa Viagem</SelectItem>
-                    <SelectItem value='fortaleza'>Fortaleza</SelectItem>
-                  </SelectContent>
-                </Select>
+                <SelectContent>
+                  <SelectItem value="taua">Tauá</SelectItem>
+                  <SelectItem value="boa_viagem">Boa Viagem</SelectItem>
+                  <SelectItem value="fortaleza">Fortaleza</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="flex flex-col gap-2">
-                <Label htmlFor="password" className="text-foreground">
-                  Senha
-                </Label>
+              <Label htmlFor="password" className="text-foreground">
+                Senha
+              </Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -181,20 +184,21 @@ function RegisterPage() {
                   )}
                 </button>
               </div>
-              <p className='text-xs text-muted-foreground'>Minimo de 8 caracteres com letra e numeros</p>
+              <p className="text-xs text-muted-foreground">
+                Minimo de 8 caracteres com letra e numeros
+              </p>
             </div>
 
             <Button type="submit" className="mt-2 h-11" disabled={iscarregado}>
               {iscarregado ? (
-              <>
-                <Loader2Icon className="animate-spin" />
-                <span>Criando...</span>{' '}
-              </>
-            ) : (
-              'Criar Conta'
-            )}
+                <>
+                  <Loader2Icon className="animate-spin" />
+                  <span>Criando...</span>{' '}
+                </>
+              ) : (
+                'Criar Conta'
+              )}
             </Button>
-
           </form>
         </CardContent>
 
@@ -212,4 +216,3 @@ function RegisterPage() {
 }
 
 export default RegisterPage
-
