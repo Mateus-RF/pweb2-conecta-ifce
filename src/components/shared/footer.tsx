@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import Brand from './brand'
 
 function Footer() {
@@ -6,9 +7,9 @@ function Footer() {
       <div className="container-main py-12">
         <div className="grid grid-cols-4">
           <div>
-            <a href="/">
+            <Link to="/">
               <Brand />
-            </a>
+            </Link>
             <p className="mt-3 text-sm text-muted-foreground text-balance leading-relaxed">
               Rede social acadêmica do IFCE. Conecatando a comunidade para
               crescer juntos.
@@ -21,12 +22,12 @@ function Footer() {
             </h3>
             <ul className="flex flex-col gap-2">
               <li>
-                <a
-                  href="/feed"
+                <Link
+                  to="/feed"
                   className="text-muted-foreground text-sm font-medium hover:text-primary"
                 >
                   Feed Acadêmico
-                </a>
+                </Link>
               </li>
               <li>
                 <a
