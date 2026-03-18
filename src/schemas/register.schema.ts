@@ -5,10 +5,12 @@ export const registerSchema = z.object({
    .string()
    .trim()
    .min(2, 'O nome de ter pelo menos 2 caracteres'),
-   lastName: z.string().trim().min(2, 'Sobrenome muito curto').optional,
+   lastName: z.string().trim().min(2, 'Sobrenome muito curto').optional(),
    email: z
-   .email('E-mail invalido')
-   .endsWith('ifce.edu.br', 'Use email institucional').optional(),
+    .string()
+    .email("E-mail inválido")
+    .endsWith("@ifce.edu.br", "Use email institucional")
+    .optional(),
    role: z.enum(['student', 'professor', 'technician']).optional(),
    campus: z.enum(['taua', 'boa_viagem', 'fortaleza']).optional(),
    password: z

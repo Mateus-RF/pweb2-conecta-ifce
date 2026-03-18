@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { EyeIcon, EyeOffIcon, Loader2Icon } from 'lucide-react'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { useState } from 'react'
 import {
   Select,
@@ -26,16 +26,20 @@ function RegisterPage() {
   const [showPass, setShowPass] = useState<boolean>(false)
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [iscarregado, setIscarregado] = useState<boolean>(false)
 
-  const handleSubmit = async (event: React.SubmitEvent) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const formData = new FormData(event.target)
+    const formData = new FormData(event.currentTarget)
 
     const data = {
       firstName: formData.get('firstName'),
+      lastName: formData.get('lastName'),
+      email: formData.get('email'),
+      role: formData.get('role'),
+      campus: formData.get('campus'),
       password: formData.get('password')
     }
+    console.log("Dados recebidos:", data)
     try{
       const validateData = registerSchema.parse(data)
       console.log(validateData)
@@ -115,7 +119,7 @@ function RegisterPage() {
               <Label htmlFor="role" className="text-foreground">
                 Vinculo
               </Label>
-              <Select>
+              <Select name='role'>
                 <SelectTrigger className="bg-background w-full h-11" id="role">
                   <SelectValue placeholder="Selecione seu vinculo com o IFCE" />
                 </SelectTrigger>
@@ -132,7 +136,7 @@ function RegisterPage() {
               <Label htmlFor="role" className="text-foreground">
                 Campus
               </Label>
-              <Select>
+              <Select name='campus'>
                 <SelectTrigger
                   className="bg-background w-full h-11"
                   id="campus"
@@ -183,15 +187,8 @@ function RegisterPage() {
               </p>
             </div>
 
-            <Button type="submit" className="mt-2 h-11" disabled={iscarregado}>
-              {iscarregado ? (
-                <>
-                  <Loader2Icon className="animate-spin" />
-                  <span>Criando...</span>{' '}
-                </>
-              ) : (
-                'Criar Conta'
-              )}
+            <Button type="submit" className="mt-2 h-11" >
+                Criar Conta
             </Button>
           </form>
         </CardContent>
