@@ -7,13 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenu,
 } from './ui/dropdown-menu'
-import AvatarUser from './avatar'
+import UserAvatar from './user-avatar'
 
 function UserMenu() {
   return(
     <DropdownMenu>
     <DropdownMenuTrigger className='outline-none focus:none'>
-      <AvatarUser />
+      <UserAvatar />
     </DropdownMenuTrigger>
     <DropdownMenuContent>
       <DropdownMenuGroup>
