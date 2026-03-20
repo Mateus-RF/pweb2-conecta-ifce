@@ -1,23 +1,31 @@
+type Role = 'STUDENT' | 'PROFESSOR' | 'TECHNICIAN'
+
+
 export type UserRequestDTO = {
   firstName: string
   lastName: string
   handle: string
   email: string
-  role: 'student' | 'professor' | 'technician'
+  role: Role
   campus: string
   password: string
+  course?: string | undefined
+}
+export type AuthUser = {
+  id: string
+  firstName: string
+  lastName: string
+  handle: string
+  email: string
+  role:Role
+  campus: {
+      id: string
+      name: string
+    }
   course?: string | undefined
 }
 
 export type UserResponseDTO = {
   token: string
-  user: UserRequestDTO & {
-    id: string
-    name: string
-    avatarUrl?: string
-    campus: {
-      id: string
-      name: string
-    }
-  }
+  user: AuthUser
 }

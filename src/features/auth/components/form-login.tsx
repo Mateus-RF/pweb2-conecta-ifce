@@ -75,7 +75,7 @@ function FormLogin() {
         disabled={useForm.isSubmitting || !useForm.isValid}
       >
         {useForm.isSubmitting ? (
-          <span>
+          <span className='flex items-center gap-4'>
             <Loader2Icon className="size-4 animate-spin" />{' '}
             <span>Entrando...</span>
           </span>

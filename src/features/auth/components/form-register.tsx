@@ -3,8 +3,8 @@ import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/components/ui/select";
 import { EyeOffIcon, EyeIcon, Loader2Icon } from "lucide-react";
-import { Controller } from "node_modules/react-hook-form/dist/controller";
 import { UseFormRegister } from "./useFormRegister";
+import { Controller } from "react-hook-form";
 
 function FormRegister() {
   const {state, onSubmit, useForm} = UseFormRegister()
@@ -100,9 +100,9 @@ function FormRegister() {
                 </SelectTrigger>
 
                 <SelectContent>
-                  <SelectItem value="student">Estudante</SelectItem>
-                  <SelectItem value="professor">Docente</SelectItem>
-                  <SelectItem value="technician">Tecnico</SelectItem>
+                  <SelectItem value="STUDENT">Estudante</SelectItem>
+                  <SelectItem value="PROFESSOR">Docente</SelectItem>
+                  <SelectItem value="TECHNICIAN">Tecnico</SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -120,7 +120,7 @@ function FormRegister() {
             name="campus"
             control={useForm.control}
             render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
+              <Select onValueChange={field.onChange} value={field.value || ""}>
                 <SelectTrigger className="bg-background w-48 h-11" id="campus">
                   <SelectValue placeholder="Selecione seu vinculo com o IFCE" />
                 </SelectTrigger>
@@ -142,7 +142,7 @@ function FormRegister() {
         </div>
       </div>
 
-      {useForm.watch('role') === 'student' && (
+      {useForm.watch('role') === 'STUDENT' && (
         <div className="flex items-center gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="course" className="text-foreground">

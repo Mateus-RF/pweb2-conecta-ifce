@@ -5,7 +5,7 @@ function setAccessToken(token: string){
 }
 
 function getAccessToken(){
-  localStorage.getItem(KEY_TOKEN)
+  return localStorage.getItem(KEY_TOKEN)
 }
 
 function clearAccessToken(){

@@ -15,7 +15,7 @@ export const registerSchema = z.object({
     .string()
     .email('E-mail inválido')
     .endsWith('@ifce.edu.br', 'Use email institucional'),
-  role: z.enum(['student', 'professor', 'technician']),
+  role: z.enum(['STUDENT', 'PROFESSOR', 'TECHNICIAN']),
   campus: z.string().nonempty(),
   course: z
     .string()
