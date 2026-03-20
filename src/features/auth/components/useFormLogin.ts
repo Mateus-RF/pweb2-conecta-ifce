@@ -34,7 +34,6 @@ export function UseFormLogin() {
       if(error instanceof ApiError){
         setAuthError(error.message)
       }
-      console.error(error)
     }
   }
   return {
