@@ -1,33 +1,10 @@
 import { http } from '@/infra/http/http-client'
 import { setAccessToken } from '../storage/auth.storage'
+import type { UserRequestDTO, UserResponseDTO } from '../types/dto/auth-dto'
 
 type CampusType = {
   id: string
   name: string
-}
-
-type UserRequestDTO = {
-  firstName: string
-  lastName: string
-  handle: string
-  email: string
-  role: 'student' | 'professor' | 'technician'
-  campus: string
-  password: string
-  course?: string | undefined
-}
-
-type UserResponseDTO = {
-  token: string
-  user: UserRequestDTO & {
-    id: string
-    name: string
-    avatarUrl?: string
-    campus: {
-      id: string
-      name: string
-    }
-  }
 }
 
 export async function getCampuses(): Promise<Array<CampusType>> {

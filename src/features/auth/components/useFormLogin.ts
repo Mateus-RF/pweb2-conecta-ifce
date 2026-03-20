@@ -1,11 +1,10 @@
+import { ApiError } from '@/infra/http/api-error'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { LoginSchema, type LoginFormData } from '../schemas/login.schema'
-import { http } from '@/infra/http/http-client'
-import { setAccessToken } from '../storage/auth.storage'
-import { ApiError } from '@/infra/http/api-error'
+import { LoginUser } from '../services/login.service'
 
 export function UseFormLogin() {
   const [showPass, setShowPass] = useState<boolean>(false)
@@ -24,11 +23,7 @@ export function UseFormLogin() {
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      const responseData = await http.post<{ token: string; user: any }>(
-        'auth/login',
-        data,
-      )
-      setAccessToken(responseData.token)
+      LoginUser(data.email, data.password)
       navigate('/feed')
     } catch (error) {
       if(error instanceof ApiError){
