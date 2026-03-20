@@ -1,11 +1,15 @@
-import Footer from "@/shared/components/footer";
+import { useAuth } from "@/features/auth/contexts/AuthContext";
 import Navbar from "@/shared/components/navbar";
 import useScroll from "@/shared/hooks/useScroll";
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
 function AppLayout(){
 
   useScroll()
+  const {isAuthenticadated} = useAuth()
+  if(!isAuthenticadated){
+    return <Navigate to='/login' replace/>
+  }
 
   return(
     <>
