@@ -3,7 +3,6 @@ import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
 import { EyeIcon, EyeOffIcon, Loader2Icon } from 'lucide-react'
 import { UseFormLogin } from './useFormLogin'
-import { isValid } from 'zod/v3'
 
 function FormLogin() {
   const { state, onSubmit, useForm } = UseFormLogin()
