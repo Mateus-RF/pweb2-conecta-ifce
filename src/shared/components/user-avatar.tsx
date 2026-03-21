@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
-function UserAvatar() {
+function UserAvatar({imageUrl, initials, size}: {imageUrl: string | undefined, initials: string, size: "default" | "sm" | "lg" | undefined}) {
   return (
-    <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" />
-      <AvatarFallback>CN</AvatarFallback>
+    <Avatar size={size}>
+      <AvatarImage src={imageUrl} />
+      <AvatarFallback className="bg-primary/20 text-primary font-semibold border border-primary">{initials}</AvatarFallback>
     </Avatar>
   )
 }

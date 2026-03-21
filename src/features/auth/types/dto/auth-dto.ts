@@ -15,6 +15,8 @@ export type AuthUser = {
   id: string
   firstName: string
   lastName: string
+  name:string
+  avatarUrl: string
   handle: string
   email: string
   role:Role
