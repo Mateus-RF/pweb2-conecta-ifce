@@ -15,8 +15,14 @@ export type AuthUser = {
   firstName: string
   lastName: string
   name:string
+  handle: string
   avatarUrl: string
   email: string
+  role: Role
+  campus: {
+    id: string
+    name: string
+  }
   course?: string | undefined
 }
 

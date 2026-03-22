@@ -4,7 +4,7 @@ export const LoginSchema = z.object({
   email: z
     .string()
     .email('E-mail inválido')
-    .endsWith('@ifce.edu.br', 'Use email institucional'),
+    .endsWith('Use email institucional'),
 
   password: z
     .string()
