@@ -19,7 +19,7 @@ export function useProfile() {
   }, [])
 
   return {
-    userData
+    userData,
     isLoading
   }
 }
