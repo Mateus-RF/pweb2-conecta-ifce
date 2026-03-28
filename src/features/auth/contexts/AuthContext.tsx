@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import type { AuthUser } from '../types/dto/auth-dto'
+import type { AuthUser } from '../types/dto/AuthDTO'
 import {
   clearStoredUser,
   getStoredUser,
@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 // eslint-disable-next-line react-refresh/only-export-components
 export function useAuth(): AuthContextType {
-  const context = useContext(AuthContext) 
+  const context = useContext(AuthContext)
   if (!context) {
     throw new Error(
       'O contexto de autenticão não pode ser acessado fora do AuthProvider',

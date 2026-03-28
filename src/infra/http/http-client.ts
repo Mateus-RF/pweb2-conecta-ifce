@@ -1,4 +1,6 @@
+import { getAccessToken } from '@/features/auth/storages/token.storage';
 import { ApiError, type ApiErrorResponse } from './api-error'
+import { Input } from '@/shared/components/ui/input';
 
 const API_URL = import.meta.env.VITE_API_URL
 
@@ -8,7 +10,7 @@ export const http = {
     searchParams?: Array<{ key: string; value: string }>,
   ): Promise<ResponseType> => {
     const finalUrl = buildUrl(endpoint, searchParams)
-    const response = await fetch(finalUrl)
+    const response = await fetchWithToken(finalUrl)
     const responseBody = await response.json()
     if (response.ok) {
       return responseBody as ResponseType
@@ -28,7 +30,7 @@ export const http = {
     body: any,
   ): Promise<ResponseType> => {
     const finalUrl = buildUrl(endPoint)
-    const response = await fetch(finalUrl, {
+    const response = await fetchWithToken(finalUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,4 +66,19 @@ function buildUrl(
   }
 
   return finalUrl.toString()
+}
+
+function fetchWithToken(input: URL | RequestInfo, init?: RequestInit): Promise<Response>{
+    const token = getAccessToken()
+
+    if(!token ){
+      return fetch(input, init)
+    }
+
+    return fetch(input, {
+      ...init,
+      headers:{
+        ...init?.headers,
+        'Authorization'  : `Bearer ${token}`
+      }})
 }

@@ -1,4 +1,3 @@
-import App from '@/App'
 import AppLayout from '@/layouts/AppLayout'
 import PublicLayout from '@/layouts/PublicLayout'
 import FeedPage from '@/pages/FeedPage'
